@@ -1,0 +1,244 @@
+{
+  box-sizing: border-box;
+}
+
+/* Handy color definitions. You can change them however you like and whole page will obey :) */
+:root {
+  --primary-color: #53cc7d;
+  --background-color: #111;
+  --link-highlight: rgba(100, 255, 180, 1);
+  --shade-background-color: rgba(17,17,17,0.3);
+  --primary-color-transparent: rgba(83, 204, 125, 0.5); /* used for selection colors */
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: var(--background-color);
+  background: var(--primary-color-transparent);
+}
+
+::selection {
+  color: var(--background-color);
+  background: var(--primary-color-transparent);
+}
+
+/*
+*  BEWARE, MY DEAR FRIEND
+*  This css file contains lots of shitty code and is not meant to be understood!
+*  This is my first web project and I am figuring out stuff along the way.
+*  Also this single css file defines layout for all pages on my website.
+*  Sidenav layout stolen from w3schools.com
+*/
+
+@font-face {
+  font-family: apl2741;
+  src: url("fonts/Apl2741.ttf");
+}
+
+@font-face {
+  font-family: vonique64;
+  src: url("fonts/Vonique64.ttf");
+}
+
+body {
+  font-family: apl2741;
+  margin: 0;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  background-image: url("images/nathan-dumlao-ciO5L8pin8A-unsplash.jpg");
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: grid;
+  grid-template-columns: 13% 1fr;
+  grid-template-rows: 1;
+}
+
+/* Just some general style for page content */
+h1, h2 {
+  font-family: vonique64;
+  text-align: center;
+  margin-bottom: 1px;
+  margin-top: 5px;
+}
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Style the side navigation */
+.sidenav {
+  border: 2px solid var(--primary-color);
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 13%;
+  min-width: 100px;
+  max-width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  color: inherit;
+  background-color: inherit;
+  overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.sidenav a {
+  color: inherit;
+  padding: 12px;
+  text-decoration: none;
+  display: grid;
+  text-align: left;
+  grid-template-rows: 3;
+  grid-template-columns: repeat(auto, 20px);
+}
+
+/* Invert colors on hover */
+.sidenav a:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+.sidenav .hidden{
+  opacity: 0.0;
+  transition: opacity 0.3s linear;
+  -moz-transition: opacity 0.3s;
+}
+.sidenav:hover .hidden {
+  opacity: 1.0;
+}
+
+.sidenav p.sidenav-splitter {
+  font-family: vonique64;
+  padding: 1px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: var(--background-color);
+  background-color: var(--primary-color);
+}
+
+/* Style icons in sidenav */
+.sidenav i {
+  width: 20px;
+  display: block;
+  grid-column: 1;
+}
+
+.sidenav .right-sided {
+  width: auto;
+  text-decoration: none;
+  grid-column: 2;
+  display: block;
+  text-align: right;
+}
+
+
+/* Style the content */
+.content {
+/*  margin-left: 200px; */
+  grid-column: 2;
+  padding-right: 20px;
+  padding-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr)
+}
+
+
+.content a {
+  color: var(--link-highlight)
+}
+
+
+.content small {
+  font-size: 10px;
+  color: #111;
+}
+
+.textblock {
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: var(--shade-background-color);
+  backdrop-filter: blur(2px);
+  border: 3px solid var(--primary-color);
+}
+
+.textblock samp#copied {
+  display: inline-block;
+  margin-left: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  color: rgba(100, 255, 180, 1);
+}
+
+s#coder {
+  margin-left = 5px;
+  margin-right = 5px;
+  color: rgba(17, 17, 17, 0);
+  background-color: rgba(17, 17, 17, 0.7);
+  transition: color 0.1s linear;
+}
+
+s#coder:hover {
+  color: rgba(255, 80, 60, 1);
+}
+
+samp#years {
+  color: rgba(100, 255, 180, 1);
+  text-decoration: underline;
+}
+
+button.fav-color {
+  display: inline-block;
+  padding: 3px;
+  font-size: 12px;
+  font-family: monospace;
+  background-color: #53cc7d; /* My fav color however will not obey */
+  color: var(--background-color);
+}
+
+/*div.photoblock-holder {
+  display: flex;
+  align-items: center;
+  object-fit: stretch;
+} */
+
+.width-extended {
+  grid-column: span 2;
+}
+
+div.photoblock {
+  margin: 10px;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  backdrop-filter: brightness(80%);
+
+}
+
+div.img-holder {
+  display: block;
+}
+
+div.photoblock img {
+  margin: 10px;
+  display: block;
+  max-width: 340px;
+  min-width: 100px;
+  justify-content: center;
+  object-fit: contain;
+}

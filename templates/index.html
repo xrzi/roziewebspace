@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>rozie's space</title>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="content">
+  <div class="textblock">
+    <h1>welcome</h1>
+    <p>This place acts as a front page to my retarded.games vps, a place for my <i class="fa fa-telegram" aria-hidden="true"></i>bots, <i class="fa fa-cube" aria-hidden="true"></i>mc server and other stuff</p>
+  </div>
+  <div class="textblock">
+    <h2>about me</h2>
+    <p>
+    I'm Rozie, a <samp id="years" onmouseover="calcage()">this</samp> year old
+passionate <s id="coder">self-taught</s> developer from Moscow.
+    
+    </p>
+  </div>
+  <div class="textblock">
+    <h2>useless info</h2>
+    <p>
+    </p>
+    <p>
+    My favorite color is <button class="fav-color" onclick="copy_to_clipboard(this)">#53cc7d</button>.<samp id="copied" style="visibility: hidden;">Copied to clipboard!</samp>
+    </p>
+  </div>
+</div>
+{% endblock %}
