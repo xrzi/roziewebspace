@@ -24,7 +24,7 @@ function delay(milliseconds) {
     return new Promise(resolve => {
         setTimeout(resolve, milliseconds);
     });
-}
+};
 
 async function copy_to_clipboard(element) {
   var rawdata = element.innerHTML;
@@ -36,10 +36,42 @@ async function copy_to_clipboard(element) {
   setTimeout(function(){
     copied_alert_elem.style.visibility = "hidden";
     copied_alert_elem.style.opacity = "0";
-}, 1300);
-//  await delay(300);
-//  stor = element.style.color;
-//  element.style.color = element.style.backgroundColor;
-//  element.style.backgroundColor = stor;
+  }, 1300);
+};
 
-}
+function post() {
+  let title = document.getElementById("title-input").value;
+  let content = document.getElementById("content-input").value;
+  let xhr = new XMLHttpRequest();
+  let url = "submit_post";
+
+  // open a connection
+  xhr.open("POST", url, true);
+
+  // Set the request header i.e. which type of content you are sending
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  // Create a state change callback
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+ 
+      // Print received data from server
+      console.log(this.responseText)
+    }
+  };
+ 
+ 
+  // Converting JSON data to string
+  var data = JSON.stringify({ "title": title, "content": content });
+ 
+  // Sending data with the request
+  xhr.send(data);
+
+  let result = document.getElementById("post-result");
+  result.style.visibility = "visible";
+  result.style.opacity = "1";
+  setTimeout(function(){
+    result.style.visibility = "hidden";
+    result.style.opacity = "0";
+  }, 1300);
+};

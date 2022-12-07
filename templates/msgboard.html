@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>message board</title>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="content">
+  <div class="textblock width-extended">
+    <h1>message board</h1>
+    <p>Leave your message below for others to see!
+    <br />
+    One rule: Please, be nice!
+    <br />
+    For safety reasons content of a post is blurred until you point your mouse at it.
+    </p>
+  </div>
+  <div class="textblock boardblock">
+    <input class="board-template" type="text" id="title-input" name="title" maxlenght="64" placeholder="your title"></input>
+    <textarea class="board-template" id="content-input" name="content" maxlenght="5000" rows="8" placeholder="Your content"></textarea>
+    <button class="button-post" onclick="post()">POST</button>
+    <samp id="post-result"></samp>
+  </div>
+  {% for post in posts %}
+  <div class="textblock post">
+    <h1>{{ post[1] }}</h1>
+    <p>{{ post[2] }}</p>
+    <small class="datetime">{{ post[0] }}</small>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

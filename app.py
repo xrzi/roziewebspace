@@ -1,5 +1,7 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 import os
+import json
+import sqlite3
 
 app = Flask(__name__)
 
@@ -25,17 +27,35 @@ def mc():
     gallery = generate_gallery(path = path)
     return render_template('mc.html', images=gallery)
 
-@app.route('/gh')
-def gh():
-    return render_template('gh.html')
+def get_posts():
+    queryformat = "SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 100;"
+    conn = sqlite3.connect('msgboard.db')
+    cursor = conn.cursor()
+    cursor.execute(queryformat)
+    result = cursor.fetchall()
+    conn.close()
+    return result
 
-@app.route('/tg')
-def tg():
-    return render_template('tg.html')
+@app.route('/msgboard')
+def msgboard():
+    posts = get_posts()
+    return render_template('msgboard.html', posts=posts)
 
-@app.route('/sc')
-def sc():
-    return render_template('sc.html')
+@app.route('/submit_post', methods = ["POST"])
+def submit_post():
+    if len(request.json['title'])>64 or len(request.json['content'])>5000:
+        return("Too damn big, make your post smaller!")
+    result = addpost(title = request.json['title'], content = request.json['content'])
+    return result
+
+def addpost(title: str, content: str):
+    queryformat = "INSERT INTO posts (date, title, content) VALUES (datetime('now'), ?, ?)"
+    conn = sqlite3.connect('msgboard.db')
+    conn.execute(queryformat, (title, content))
+    conn.commit()
+    conn.close()
+    return "posted"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
