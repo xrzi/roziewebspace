@@ -168,8 +168,10 @@ p {
   grid-column: 2;
   padding-right: 20px;
   padding-left: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr)
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: stretch;
 }
 
 .content a {
@@ -188,7 +190,8 @@ p {
   display: flex;
   align-items: stretch;
   flex-flow: column;
-  flex-basis: fit-content;
+  flex-grow: 1;
+  flex-basis: 400px;
 }
 
 .textblock:hover {
@@ -265,7 +268,7 @@ img.archlinux-logo {
 }
 
 .width-extended {
-  grid-column: span 2;
+  flex-basis: 100%;
   min-height: unset;
 }
 
