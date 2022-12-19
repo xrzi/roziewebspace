@@ -15,20 +15,22 @@
   </head>
   <body>
     <script src="{{ url_for('static', filename='index.js') }}"></script>
-    <div class="sidenav collapsable">
-      <div class="sidebar-outline sb1 collapsable"></div>
-      <a href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="right-sided">rozie's space</span></a>
-      <p class="sidenav-splitter"><small>links</small></p>
-      <a href="https://github.com/RoziePlaysPython/"><i class="fa fa-github" aria-hidden="true"></i><span class="right-sided"><span class="hidden">rozie's </span>github</span></a>
-      <a href="https://t.me/uwuashell"><i class="fa fa-telegram" aria-hidden="true"></i><span class="right-sided"><span class="hidden">rozie's </span>telegram</span></a>
-      <a href="https://soundcloud.com/rozkum"><i class="fa fa-soundcloud" aria-hidden="true"></i><span class="right-sided"><span class="hidden">rozie's </span>soundcloud</span></a>
-      <p class="sidenav-splitter"><small>local website</small></p>
-      <a href="mc"><i class="fa fa-cube" aria-hidden="true"></i><span class="right-sided">minecraft server</span></a>
-      <a href="msgboard"><i class="fa fa-envelope-open-o" aria-hidden="true"></i><span class="right-sided">messageboard</span></a>
-      <div class="sidebar-outline sb2 collapsable"></div>
+    <div class="background-filter-pane"></div>
+    <div class="whole-page">
+      <div class="sidenav collapsable">
+        <button id="minimize-sidenav" onclick="minimize()"><i class="fa fa-bars" aria-hidden="true"></i></button>
+        <a href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="right-sided">rozie's space</span></a>
+        <p class="sidenav-splitter"><small>links</small></p>
+        <a href="https://github.com/RoziePlaysPython/"><i class="fa fa-github" aria-hidden="true"></i><span class="right-sided"><span class="hidden">rozie's </span>github</span></a>
+        <a href="https://t.me/uwuashell"><i class="fa fa-telegram" aria-hidden="true"></i><span class="right-sided"><span class="hidden">rozie's </span>telegram</span></a>
+        <a href="https://soundcloud.com/rozkum"><i class="fa fa-soundcloud" aria-hidden="true"></i><span class="right-sided"><span class="hidden">rozie's </span>soundcloud</span></a>
+        <p class="sidenav-splitter"><small>local website</small></p>
+        <a href="mc"><i class="fa fa-cube" aria-hidden="true"></i><span class="right-sided">minecraft server</span></a>
+        <a href="msgboard"><i class="fa fa-envelope-open-o" aria-hidden="true"></i><span class="right-sided">messageboard</span></a>
+      </div>
+      
+      {% block body %}
+      {% endblock %}
     </div>
-    
-    {% block body %}
-    {% endblock %}
   </body>
 </html>

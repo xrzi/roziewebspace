@@ -10,6 +10,8 @@
   --shade-background-color: rgba(17, 17, 17, 0.3);
   --darker-background-color: rgba(17, 17, 17, 0.7);
   --primary-color-transparent: rgba(83, 204, 125, 0.5); /* used for selection colors */
+  --body-bg-gradient-1: #008843;
+  --body-bg-gradient-2: #19254D;
 }
 
 ::-moz-selection { /* Code for Firefox */
@@ -41,18 +43,32 @@
 }
 
 body {
+  background: url("images/waves-bw2.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* So setting whole <body> to display: grid really sucks, cuz there's no way to add something not in grid, so div.whole-page is a wrapper for .sidenav+.conent */
+.background-filter-pane {
+  z-index: -100;
+  display: block;
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(30%);
+}
+
+.whole-page {
   font-family: apl2741;
   margin: 0;
   color: var(--primary-color);
-  background-color: var(--background-color);
-  background-image: url("images/nathan-dumlao-ciO5L8pin8A-unsplash.jpg");
-  background-attachment: scroll;
-  background-repeat: no-repeat;
-  background-size: 100%;
   display: grid;
   grid-template-columns: 15% 1fr;
-  grid-template-rows: 1;
+  grid-template-rows: 1fr;
 }
+
 
 /* Just some general style for page content */
 h1, h2 {
@@ -64,7 +80,7 @@ h1, h2 {
 }
 
 .textblock:hover h1, .textblock:hover h2 {
-  letter-spacing: 5px;
+  letter-spacing: 1px;
 }
 
 h1 {
@@ -90,6 +106,7 @@ p {
 .sidenav {
   border: 2px solid var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
+  grid-column: 1;
   height: 100%;
   width: 15%;
   min-width: 100px;
@@ -99,16 +116,25 @@ p {
   top: 0;
   left: 0;
   color: inherit;
-  background-color: inherit;
+  background-color: var(--background-color);
   overflow-x: hidden;
 }
 
 
 /* Side navigation links */
-.sidenav a {
+
+.sidenav > * { /* define style for any child of sidenav */
+
+}
+
+.sidenav > * {
   color: inherit;
+  background-color: inherit;
   padding: 12px;
   text-decoration: none;
+}
+
+.sidenav a {
   display: grid;
   text-align: left;
   grid-template-rows: 3;
@@ -117,11 +143,19 @@ p {
   white-space: nowrap;
 }
 
-/* Invert colors on hover */
-.sidenav a:hover {
+.sidenav button#minimize-sidenav {
+  display: block;
+  border-style: none solid solid none;
+  border-width: inherit;
+  border-color: inherit;
+}
+
+/* Invert colors on hover for every direct child of .sidenav */
+.sidenav > *:hover {
   background-color: var(--primary-color);
   color: var(--background-color);
 }
+
 
 .sidenav .hidden {
   opacity: 0.0;
@@ -164,6 +198,8 @@ p {
 
 /* Style the content */
 .content {
+  height: 100%;
+  background-color: unset;
 /*  margin-left: 200px; */
   grid-column: 2;
   padding-right: 20px;
@@ -182,8 +218,9 @@ p {
   margin: 5px;
   padding: 5px;
   background-color: var(--shade-background-color);
-  backdrop-filter: blur(4px);
-  border: 3px solid var(--primary-color);
+  border: 3px solid;
+  border-image: linear-gradient(45deg, var(--background-color), var(--primary-color));
+  border-image-slice: 1;
   transition: all 0.1s linear;
   min-height: 200px;
   max-height: 600px;
@@ -192,11 +229,13 @@ p {
   flex-flow: column;
   flex-grow: 1;
   flex-basis: 400px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .textblock:hover {
-  border-bottom: 8px solid var(--primary-color);
-  backdrop-filter: blur(10px) brightness(80%);
+  background-color: var(--background-color);
+  backdrop-filter: none;
 }
 
 
@@ -218,7 +257,7 @@ s.spoiler {
   overflow: hidden;
   white-space: nowrap;
   color: rgba(17, 17, 17, 0);
-  background-color: rgba(17, 17, 17, 0.3);
+  background-color: rgba(23, 23, 23, 1);
   transition: all 0.1s linear;
 }
 
@@ -232,12 +271,14 @@ samp#years {
   text-decoration: underline;
 }
 
-button {
+.content button {
   display: inline-block;
   padding: 3px;
   font-size: 12px;
   font-family: monospace;
-  border: none;
+  border-width: 0px;
+  border-style: solid;
+  border-color: var(--background-color);
   background-color: var(--primary-color);
   color: var(--background-color);
 }
@@ -250,16 +291,16 @@ button.button-post {
   font-family: vonique64;
   width: 100%;
   height: 30px;
-  color: var(--background-color);
-  background-color: var(--primary-color);
-  border-radius: unset;
   margin-top: auto;
 }
 
-button:hover {
-    background-color: var(--background-color);
-    color: var(--primary-color);
+.content button:hover {
+  border-width:1px;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }
+
 
 img.archlinux-logo {
   display: inline-block;
@@ -279,22 +320,23 @@ div.photoblock {
   flex-flow: wrap;
   align-items: center;
   justify-content: center;
-  object-fit: contain;
-  backdrop-filter: brightness(80%);
-
+  object-fit: cover;
 }
 
 div.img-holder {
-  display: block;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 400px;
+  margin: 10px;
+  object-fit: cover;
 }
 
 div.photoblock img {
   margin: 10px;
   display: block;
-  max-width: 340px;
-  min-width: 100px;
-  justify-content: center;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .board-template {
@@ -344,6 +386,7 @@ div.post:hover p {
 }
 
 div.post small.datetime {
+  color: var(--primary-color)
   font-family: vonique64;
   backdrop-filter: brightness(160%);
   text-align: right;
