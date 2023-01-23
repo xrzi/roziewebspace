@@ -1,0 +1,197 @@
+/* Moved from style.css for better readability // Those 500 lines of css drive me crazy */
+/* Let's say base.css is mostly sidenav-related stuff + basic page style - color definitions and background setups*/
+
+{
+  box-sizing: border-box;
+}
+
+/* Handy color definitions. You can change them however you like and whole page will obey :) */
+:root {
+  --primary-color: #53cc7d;
+  --background-color: #111;
+  --link-highlight: rgba(100, 255, 180, 1);
+  --shade-background-color: rgba(17, 17, 17, 0.3);
+  --darker-background-color: rgba(17, 17, 17, 0.7);
+  --primary-color-transparent: rgba(83, 204, 125, 0.5); /* used for selection colors */
+  --body-bg-gradient-1: #008843;
+  --body-bg-gradient-2: #19254D;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: var(--background-color);
+  background: var(--primary-color-transparent);
+}
+
+::selection {
+  color: var(--background-color);
+  background: var(--primary-color-transparent);
+}
+
+.background-filter-pane {
+  z-index: -100;
+  display: block;
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(30%);
+}
+
+.whole-page {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  font-family: apl2741;
+  color: var(--primary-color);
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-y: scroll;
+}
+
+.sidenav {
+  position: sticky;
+  flex-grow: 1;
+  border: 2px solid var(--primary-color);
+  font-family: Arial, Helvetica, sans-serif;
+  height: 1fr;
+  width: fit-content;
+  color: inherit;
+  background-color: var(--background-color);
+  white-space: normal;
+  transition: width 0.6s;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.sidenav-minimized {
+  width: 40px !important;
+  overflow-x: hidden !important;
+}
+
+.sidenav .right-sided {
+  padding-left: 1em;
+  text-decoration: none;
+  grid-column: 2;
+  display: block;
+  text-align: right;
+}
+
+.sidenav-minimized .right-sided {
+  display: none;
+}
+.sidenav-minimized .sidenav-splitter {
+  display: none;
+}
+
+/* Side navigation links */
+.sidenav > * {
+  min-width: fit-content;
+  color: inherit;
+  background-color: inherit;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.sidenav i {
+  width: 16px;
+}
+
+.sidenav a {
+  width: 1fr;
+  display: grid;
+  text-align: left;
+  grid-template-rows: 3;
+  grid-template-columns: repeat(auto, 20px);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidenav button {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-flow: nowrap;
+  align-content: center;
+  border-width: inherit;
+  border-color: inherit;
+}
+
+.sidenav button#minimize-sidenav {
+  border-style: none none solid none;
+}
+
+.sidenav button#theme-settings {
+  margin-top: auto;
+  border-style: solid none none none;
+}
+
+.sidenav > *:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+
+.sidenav .hidden {
+  opacity: 0.0;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0px;
+  transition: opacity 0.1s linear;
+  -moz-transition: opacity 0.05s;
+}
+.sidenav:hover .hidden {
+  opacity: 1.0;
+  width: unset;
+}
+
+.sidenav p.sidenav-splitter {
+  font-family: vonique64;
+  padding: 1px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: var(--background-color);
+  background-color: var(--primary-color);
+}
+
+/* Style icons in sidenav */
+.sidenav i {
+  text-align: left;
+  display: block;
+  grid-column: 1;
+  object-fit: stretch;
+}
+
+a:hover i {
+  transform: rotate(-20deg)
+}
+
+.floating {
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  bottom: 2px;
+  right: 2px;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, auto);
+  background-color: var(--background-color);
+  color: inherit;
+  border: 2px solid var(--primary-color);
+  z-index: 10;
+}
+
+.floating * {
+  margin: 5px;
+}
+
+.themehidden {
+  display: none;
+}
+
+.themeinput {
+  color:inherit;
+  background-color: inherit;
+  border: inherit;
+}

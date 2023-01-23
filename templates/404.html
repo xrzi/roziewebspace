@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>404</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='404.css') }}">
+{% endblock %}
+
+{% block body %}
+    <script src="{{ url_for('static', filename='404.js') }}"></script>
+    <div class="content">
+        <div class="page-filler" id="pagefiller">
+            <div class="block404" id="movableobj" onload="move_obj()">
+                <h1 class="text404">
+                    404
+                </h1>
+                <h3 class="text404">
+                PAGE NOT FOUND
+                </h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}

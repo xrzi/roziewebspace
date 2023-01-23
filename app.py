@@ -48,6 +48,10 @@ def submit_post():
     result = addpost(title = request.json['title'], content = request.json['content'])
     return result
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 def addpost(title: str, content: str):
     queryformat = "INSERT INTO posts (date, title, content) VALUES (datetime('now'), ?, ?)"
     conn = sqlite3.connect('msgboard.db')

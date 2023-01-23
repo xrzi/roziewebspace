@@ -1,28 +1,3 @@
-{
-  box-sizing: border-box;
-}
-
-/* Handy color definitions. You can change them however you like and whole page will obey :) */
-:root {
-  --primary-color: #53cc7d;
-  --background-color: #111;
-  --link-highlight: rgba(100, 255, 180, 1);
-  --shade-background-color: rgba(17, 17, 17, 0.3);
-  --darker-background-color: rgba(17, 17, 17, 0.7);
-  --primary-color-transparent: rgba(83, 204, 125, 0.5); /* used for selection colors */
-  --body-bg-gradient-1: #008843;
-  --body-bg-gradient-2: #19254D;
-}
-
-::-moz-selection { /* Code for Firefox */
-  color: var(--background-color);
-  background: var(--primary-color-transparent);
-}
-
-::selection {
-  color: var(--background-color);
-  background: var(--primary-color-transparent);
-}
 
 /*
 *  BEWARE, MY DEAR FRIEND
@@ -44,30 +19,11 @@
 
 body {
   background: url("images/waves-bw2.gif");
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
-}
-
-/* So setting whole <body> to display: grid really sucks, cuz there's no way to add something not in grid, so div.whole-page is a wrapper for .sidenav+.conent */
-.background-filter-pane {
-  z-index: -100;
-  display: block;
-  position: fixed;
-  left:0;
-  top:0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: brightness(30%);
-}
-
-.whole-page {
-  font-family: apl2741;
   margin: 0;
-  color: var(--primary-color);
-  display: grid;
-  grid-template-columns: 15% 1fr;
-  grid-template-rows: 1fr;
 }
+
 
 
 /* Just some general style for page content */
@@ -103,101 +59,19 @@ p {
 }
 
 /* Style the side navigation */
-.sidenav {
-  border: 2px solid var(--primary-color);
-  font-family: Arial, Helvetica, sans-serif;
-  grid-column: 1;
-  height: 100%;
-  width: 15%;
-  min-width: 100px;
-  max-width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  color: inherit;
-  background-color: var(--background-color);
-  overflow-x: hidden;
+
+button span.right-sided {
+  margin-left: auto;
 }
 
-
-/* Side navigation links */
-
-.sidenav > * { /* define style for any child of sidenav */
-
-}
-
-.sidenav > * {
-  color: inherit;
-  background-color: inherit;
-  padding: 12px;
-  text-decoration: none;
-}
-
-.sidenav a {
-  display: grid;
-  text-align: left;
-  grid-template-rows: 3;
-  grid-template-columns: repeat(auto, 20px);
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.sidenav button#minimize-sidenav {
-  display: block;
-  border-style: none solid solid none;
-  border-width: inherit;
-  border-color: inherit;
-}
 
 /* Invert colors on hover for every direct child of .sidenav */
-.sidenav > *:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-
-
-.sidenav .hidden {
-  opacity: 0.0;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0px;
-  transition: all 0.1s linear;
-  -moz-transition: all 0.1s;
-}
-.sidenav:hover .hidden {
-  opacity: 1.0;
-  width: unset;
-}
-
-.sidenav p.sidenav-splitter {
-  font-family: vonique64;
-  padding: 1px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  text-align: center;
-  color: var(--background-color);
-  background-color: var(--primary-color);
-}
-
-/* Style icons in sidenav */
-.sidenav i {
-  width: 20px;
-  display: block;
-  grid-column: 1;
-}
-
-.sidenav .right-sided {
-  width: auto;
-  text-decoration: none;
-  grid-column: 2;
-  display: block;
-  text-align: right;
-}
 
 
 /* Style the content */
 .content {
+  flex-shrink: 1;
+  width: fit-content;
   height: 100%;
   background-color: unset;
 /*  margin-left: 200px; */
@@ -249,6 +123,18 @@ p {
   color: rgba(100, 255, 180, 1);
 }
 
+.textblock:has(> .codestats-wrapper) {
+  height:fit-content;
+}
+
+.textblock .codestats-wrapper {
+  display: flex;
+  max-width: 50vw;
+  height: 100%;
+  flex-shrink: 1;
+}
+
+
 s.spoiler {
   display: inline-block;
   margin-bottom: -5px;
@@ -274,6 +160,7 @@ samp#years {
 .content button {
   display: inline-block;
   padding: 3px;
+  margin: 0 3px;
   font-size: 12px;
   font-family: monospace;
   border-width: 0px;
@@ -295,17 +182,26 @@ button.button-post {
 }
 
 .content button:hover {
-  border-width:1px;
+  border-width: 1px;
+  padding: 2px;
   background-color: var(--background-color);
   color: var(--primary-color);
   border-color: var(--primary-color);
 }
 
 
-img.archlinux-logo {
+img.logo {
   display: inline-block;
   height: 20px;
+  width: 20px;
+  padding: 0 10px;
+  object-fit: cover;
+  object-position: left;
   margin-bottom: -5px;
+}
+
+img.logo-i3 {
+  filter: invert(100%) hue-rotate(130deg) brightness(130%);
 }
 
 .width-extended {
@@ -337,6 +233,14 @@ div.photoblock img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: all 0.22s linear;
+}
+
+.img-holder:hover img {
+  margin-top: 0;
+  margin-bottom: 20px;
+  filter: brightness(110%);
+  box-shadow: 3px 10px var(--primary-color-transparent);
 }
 
 .board-template {
@@ -386,10 +290,34 @@ div.post:hover p {
 }
 
 div.post small.datetime {
-  color: var(--primary-color)
+  color: var(--primary-color);
   font-family: vonique64;
   backdrop-filter: brightness(160%);
   text-align: right;
   margin-top: auto;
   padding-right: 10px;
+}
+
+@media screen and (max-width: 560px) {
+  .whole-page {
+    flex-flow: column nowrap;
+  }
+  .content {
+    position: absolute;
+    top: 50px;
+    z-index: -10;
+  }
+  .sidenav {
+    position: fixed;
+    height: fit-content;
+    width: 100%;
+  }
+  .sidenav-minimized {
+    height: fit-content;
+    overflow-y: hidden;
+    flex-grow: 0;
+  }
+  .sidenav-minimized > a {
+    display: none;
+  }
 }
