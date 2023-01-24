@@ -1,0 +1,6 @@
+CREATE TABLE posts (
+    id INTEGET PRIMARY KEY, 
+    date TEXT,
+    title TEXT,
+    content TEXT
+)

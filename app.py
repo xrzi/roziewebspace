@@ -29,7 +29,7 @@ def mc():
 
 def get_posts():
     queryformat = "SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 100;"
-    conn = sqlite3.connect('msgboard.db')
+    conn = sqlite3.connect(dbname)
     cursor = conn.cursor()
     cursor.execute(queryformat)
     result = cursor.fetchall()
@@ -54,7 +54,7 @@ def page_not_found(e):
 
 def addpost(title: str, content: str):
     queryformat = "INSERT INTO posts (date, title, content) VALUES (datetime('now'), ?, ?)"
-    conn = sqlite3.connect('msgboard.db')
+    conn = sqlite3.connect(dbname)
     conn.execute(queryformat, (title, content))
     conn.commit()
     conn.close()
@@ -62,4 +62,19 @@ def addpost(title: str, content: str):
 
 
 if __name__ == '__main__':
+    workdir = os.path.dirname(os.path.abspath(__file__))
+    print(f"Using {workdir} as working directory")
+    dbname = "msgboard.db"
+    if not dbname in os.listdir(workdir):
+        print("No database found, creating new one")
+        if not "db.schema" in os.listdir(workdir):
+            exit("Can't create new db, no schema file in working directory, exiting")
+        conn = sqlite3.connect(dbname)
+        conn.execute(open(os.path.join(workdir, "db.schema"), "r").read()) #reading db.schema into sqlite3
+        conn.commit()
+        conn.close()
+    else:
+        print(f"found database at {os.path.join(workdir, dbname)}")
+    print("launching flask")
+            
     app.run(debug=True)
