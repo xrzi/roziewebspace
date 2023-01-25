@@ -166,32 +166,3 @@
 a:hover i {
   transform: rotate(-20deg)
 }
-
-.floating {
-  width: fit-content;
-  height: fit-content;
-  position: fixed;
-  bottom: 2px;
-  right: 2px;
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  grid-template-columns: repeat(2, auto);
-  background-color: var(--background-color);
-  color: inherit;
-  border: 2px solid var(--primary-color);
-  z-index: 10;
-}
-
-.floating * {
-  margin: 5px;
-}
-
-.themehidden {
-  display: none;
-}
-
-.themeinput {
-  color:inherit;
-  background-color: inherit;
-  border: inherit;
-}
