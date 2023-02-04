@@ -17,6 +17,8 @@
   --body-bg-gradient-2: #19254D;
 }
 
+html,body: { height:100%; }
+
 ::-moz-selection { /* Code for Firefox */
   color: var(--background-color);
   background: var(--primary-color-transparent);
@@ -41,7 +43,7 @@
 .whole-page {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: max-content;
   font-family: apl2741;
   color: var(--primary-color);
   display: flex;
@@ -49,12 +51,14 @@
   overflow-y: scroll;
 }
 
+/* Style the side navigation */
+
 .sidenav {
   position: sticky;
   flex-grow: 1;
   border: 2px solid var(--primary-color);
   font-family: Arial, Helvetica, sans-serif;
-  height: 1fr;
+  height: 100%;
   width: fit-content;
   color: inherit;
   background-color: var(--background-color);
@@ -62,6 +66,10 @@
   transition: width 0.6s;
   display: flex;
   flex-flow: column nowrap;
+}
+
+button span.right-sided {
+  margin-left: auto;
 }
 
 .sidenav-minimized {
@@ -121,11 +129,7 @@
   border-style: none none solid none;
 }
 
-.sidenav button#theme-settings {
-  margin-top: auto;
-  border-style: solid none none none;
-}
-
+/* Invert colors on hover for every direct child of .sidenav */
 .sidenav > *:hover {
   background-color: var(--primary-color);
   color: var(--background-color);

@@ -58,15 +58,6 @@ p {
   color: #111;
 }
 
-/* Style the side navigation */
-
-button span.right-sided {
-  margin-left: auto;
-}
-
-
-/* Invert colors on hover for every direct child of .sidenav */
-
 
 /* Style the content */
 .content {
@@ -123,15 +114,31 @@ button span.right-sided {
   color: rgba(100, 255, 180, 1);
 }
 
-.textblock:has(> .codestats-wrapper) {
-  height:fit-content;
+.textblock .stats-wrapper {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  height: 500px;
+  align-items: center;
 }
 
 .textblock .codestats-wrapper {
-  display: flex;
-  max-width: 50vw;
+  display: block;
   height: 100%;
-  flex-shrink: 1;
+  max-width: 50%;
+  justify-content: center;
+}
+
+.textblock .codestats {
+  display: block;
+  height: 100%;
+  margin: auto;
+}
+
+.textblock .githubstats-wrapper {
+  display: block;
+  height: 100%;
+  max-width: 50%;
 }
 
 
@@ -147,7 +154,7 @@ s.spoiler {
   transition: all 0.1s linear;
 }
 
-s.spoiler:hover {
+.textblock:hover s.spoiler {
   width: unset;
   color: rgba(255, 80, 60, 1);
 }
