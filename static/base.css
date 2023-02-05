@@ -17,8 +17,6 @@
   --body-bg-gradient-2: #19254D;
 }
 
-html,body: { height:100%; }
-
 ::-moz-selection { /* Code for Firefox */
   color: var(--background-color);
   background: var(--primary-color-transparent);
