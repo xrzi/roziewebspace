@@ -43,7 +43,7 @@ html,body: { height:100%; }
 .whole-page {
   position: fixed;
   width: 100vw;
-  height: max-content;
+  height: 100%;
   font-family: apl2741;
   color: var(--primary-color);
   display: flex;
