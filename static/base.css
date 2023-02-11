@@ -102,6 +102,9 @@ button span.right-sided {
 .sidenav i {
   width: 16px;
 }
+.sidenav i.fa-soundcloud {
+  margin-left: -2px;
+}
 
 .sidenav a {
   width: 1fr;
@@ -167,4 +170,32 @@ button span.right-sided {
 
 a:hover i {
   transform: rotate(-20deg)
+}
+
+@media screen and (max-width: 800px) {
+  .whole-page {
+    flex-flow: column nowrap;
+    max-width: 100vw !important;
+  }
+  .content {
+    position: absolute;
+    top: 50px;
+    z-index: -10;
+  }
+  .sidenav {
+    position: fixed;
+    height: fit-content;
+    width: 99% !important; 
+    transition: height 0.4s;
+  }
+  .sidenav-minimized {
+    overflow-y: hidden;
+    flex-grow: 0;
+  }
+  .sidenav-minimized > a {
+    display: none;
+  }
+  .sidenav-minimized button#minimize-sidenav {
+    border-bottom: 0px;
+  }
 }
