@@ -1,4 +1,4 @@
-function calcage() {
+window.onload = function calcage() {
   var dob = new Date("07/07/2002");
   //calculate month difference from current date in time
   var month_diff = Date.now() - dob.getTime();
