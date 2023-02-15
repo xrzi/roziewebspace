@@ -44,6 +44,7 @@ function post() {
   let content = document.getElementById("content-input").value;
   let xhr = new XMLHttpRequest();
   let url = "submit_post";
+  var reply = "none"
 
   // open a connection
   xhr.open("POST", url, true);
@@ -56,7 +57,8 @@ function post() {
     if (xhr.readyState === 4 && xhr.status === 200) {
  
       // Print received data from server
-      console.log(this.responseText)
+      console.log(this.responseText);
+      reply = this.responseText;
     }
   };
  
@@ -68,11 +70,15 @@ function post() {
   xhr.send(data);
 
   let result = document.getElementById("post-result");
+  result.innerHTML = reply;
+  document.getElementById("title-input").value="";
+  document.getElementById("content-input").value="";
   result.style.visibility = "visible";
   result.style.opacity = "1";
   setTimeout(function(){
     result.style.visibility = "hidden";
     result.style.opacity = "0";
+    window.location.reload();
   }, 1300);
 };
 
