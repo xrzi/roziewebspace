@@ -14,7 +14,8 @@
 
 @font-face {
   font-family: vonique64;
-  src: url("fonts/Vonique64.ttf");
+  src: url("fonts/CryptoCrash-K7jWe.ttf");
+/*  src: url("fonts/Vonique64.ttf"); */
 }
 
 body {
@@ -22,6 +23,8 @@ body {
   background-repeat: repeat-y;
   background-size: cover;
   margin: 0;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 
@@ -33,10 +36,16 @@ h1, h2 {
   margin-bottom: 1px;
   margin-top: 5px;
   transition: all 0.1s linear;
+  text-shadow: 2px 0px 0px rgba(255,0,0,0.5),
+               -2px 0px 0px rgba(0,0,255,0.5),
+               0px 2px 0px rgba(255,255,0,0.5);
 }
 
 .textblock:hover h1, .textblock:hover h2 {
   letter-spacing: 1px;
+  text-shadow: 5px 0px 0px rgba(255,0,0,0.5),
+               -5px 0px 0px rgba(0,0,255,0.5),
+               0px 5px 0px rgba(255,255,0,0.5);
 }
 
 h1 {
@@ -62,7 +71,7 @@ p {
 /* Style the content */
 .content {
   flex-shrink: 1;
-  width: fit-content;
+  max-width: 95vw;
   height: 100%;
   background-color: unset;
   margin-left: 35px;

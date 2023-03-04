@@ -180,6 +180,7 @@ a:hover i {
   }
   .content {
     position: absolute;
+    margin-left: 0;
     top: 50px;
     z-index: -10;
   }
@@ -198,8 +199,5 @@ a:hover i {
   }
   .sidenav-minimized button#minimize-sidenav {
     border-bottom: 0px;
-  }
-  .content {
-    margin-left: unset;
   }
 }
