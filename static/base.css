@@ -67,7 +67,7 @@
   flex-flow: column nowrap;
 }
 
-button span.right-sided {
+.sidenav button span.right-sided {
   margin-left: auto;
 }
 

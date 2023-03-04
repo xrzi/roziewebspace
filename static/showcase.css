@@ -1,0 +1,98 @@
+{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+:root {
+  --color-1: #6FD ;
+  --bg-1: #003 ;
+  --color-2: #103 ;
+  --bg-2: #F06 ;
+  --color-3: #000 ;
+  --bg-3: #000 ;
+  --color-4: #000 ;
+  --bg-4: #000 ;
+  --color-5: #000 ;
+  --bg-5: #000 ;
+}
+
+.secblock h1 {
+  font-family: 'Major Mono Display', monospace;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+  margin: 0;
+  padding: 10px;
+}
+.secblock p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+}
+
+div.limiter {
+  min-width: 33vw;
+  max-width: 40vw;
+}
+
+img.separator {
+  margin: -6px 0px;
+  width: 100%;
+  object-fit: fill;
+}
+
+.secblock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  height: 50vh;
+  width: 100vw;
+}
+
+.secblock:before {
+  filter: blur(3px);
+}
+.secblock:after {
+  filter: none;
+}
+
+.secblock#sec1 {
+  color: var(--color-1);
+  background-color: var(--bg-1);
+}
+
+.secblock#sec2 {
+  color: var(--color-2);
+  background-color: var(--bg-2);
+}
+
+.secblock#sec3 {
+  color: var(--color-3);
+  background-image: url('images/haikei/stacked-waves-haikei.svg');
+  background-size: cover;
+
+}
+
+.secblock#sec4 {
+  color: var(--color-4);
+  background-color: var(--bg-4);
+
+}
+
+.secblock#sec5 {
+  color: var(--color-5);
+  background-color: var(--bg-5);
+
+}
+

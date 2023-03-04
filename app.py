@@ -27,8 +27,8 @@ def mc():
     gallery = generate_gallery(path = path)
     return render_template('mc.html', images=gallery)
 
-def get_posts():
-    queryformat = "SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 100;"
+def get_posts(offset):
+    queryformat = f"SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 100 OFFSET {offset*100};"
     conn = sqlite3.connect(dbname)
     cursor = conn.cursor()
     cursor.execute(queryformat)
@@ -37,8 +37,9 @@ def get_posts():
     return result
 
 @app.route('/msgboard')
-def msgboard():
-    posts = get_posts()
+@app.route('/msgboard/<int:offset>')
+def msgboard(offset = 0):
+    posts = get_posts(offset+1)
     return render_template('msgboard.html', posts=posts)
 
 @app.route('/submit_post', methods = ["POST"])
@@ -59,6 +60,14 @@ def addpost(title: str, content: str):
     conn.commit()
     conn.close()
     return "posted"
+
+@app.route('/showcase')
+def showcasepage():
+    return render_template('showcase.html')
+
+@app.route('/coolcards')
+def coolcards():
+    return render_template("cardhovershowcase.html")
 
 
 if __name__ == '__main__':
