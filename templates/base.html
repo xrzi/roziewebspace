@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='colors.css') }}">
     <!--
     <link rel="stylesheet" href="/css/style.css">
     -->
@@ -15,10 +16,10 @@
     {% endblock %}
   </head>
   <body>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='base.js') }}"></script>
     <div class="background-filter-pane"></div>
     <div class="whole-page">
-      <div class="sidenav sidenav-minimized" id="collapsable">
+      <div class="sidenav sidenav-minimized secondary-color" id="collapsable">
         <button id="minimize-sidenav" onclick="minimize_sidenav()"><i class="fa fa-bars" aria-hidden="true"></i></button>
         <a href="/"><i class="fa fa-home" aria-hidden="true"></i><span class="right-sided">rozie's space</span></a>
         <p class="sidenav-splitter"><small>links</small></p>

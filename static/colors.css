@@ -1,0 +1,45 @@
+:root {
+                     /* Approximately nearest colors */
+  --1-fg  : #55cc77; /* Emerald             */
+  --2-fg  : #44ffbb; /* Aquamarine          */
+  --hl-fg : #EECCFF; /* Mauve               */
+
+  --1-bg  : #111111; /* Night               */
+  --2-bg  : #0c0c1a; /* Rich black          */
+  --hl-bg : #121126; /* Oxford blue (sorta) */
+}
+
+/* color classes */
+
+.primary-color {
+  color: var(--1-fg);
+  background-color: var(--1-bg);
+}
+
+.secondary-color {
+  color: var(--2-fg);
+  background-color: var(--2-bg);
+}
+
+.highlight-color {
+  color: var(--hl-fg);
+  background-color: var(--hl-bg);
+}
+
+.glitch {
+  text-shadow: 2px 0px 0px rgba(255, 0,   0,   0.5), 
+              -2px 0px 0px rgba(0,   0,   255, 0.5), 
+               0px 2px 0px rgba(255, 255, 0,   0.5);
+}
+
+*:hover > .glitch {
+  text-shadow: 5px 0px 0px rgba(255, 0,   0,   0.5), 
+              -5px 0px 0px rgba(0,   0,   255, 0.5), 
+               0px 5px 0px rgba(255, 255, 0,   0.5);
+}
+
+/* Using --hl-* as selection colors, but reversed */
+::selection, ::-moz-selection {
+  color: var(--hl-bg); /* bg for fg */
+  background-color: var(--hl-fg);
+}

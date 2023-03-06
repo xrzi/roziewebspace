@@ -81,23 +81,3 @@ function post() {
     window.location.reload();
   }, 1300);
 };
-
-
-function minimize_sidenav() {
-  var sidenav_element = document.getElementById("collapsable");
-  if (sidenav_element.className == "sidenav") {
-    sidenav_element.className += " sidenav-minimized"
-  } else {
-    sidenav_element.className = "sidenav"
-  }
-};
-
-function theme_settings() {
-  // unhide settings div
-  var themepage = document.getElementById("themepage");
-  if (themepage.className == "floating themehidden") {
-    themepage.className = "floating"
-  } else {
-    themepage.className = "floating themehidden"
-  }
-}
