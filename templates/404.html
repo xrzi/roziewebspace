@@ -8,15 +8,13 @@
 {% block body %}
     <script src="{{ url_for('static', filename='404.js') }}"></script>
     <div class="content">
-        <div class="page-filler" id="pagefiller">
-            <div class="block404" id="movableobj" onload="move_obj()">
-                <h1 class="text404">
-                    404
-                </h1>
-                <h3 class="text404">
-                PAGE NOT FOUND
-                </h3>
-            </div>
+      <div class="bounce-wrapper">
+        <div class="dvdbounce">
+          <img class="shadow" src="https://media.tenor.com/SEDs1Lp5PqEAAAAd/loop-eyes.gif"></img>
+          <img class="bg" src="https://media.tenor.com/SEDs1Lp5PqEAAAAd/loop-eyes.gif"></img>
+          <h1>404</h1>
+          <p>No such page</p>
         </div>
+      </div>
     </div>
 {% endblock %}

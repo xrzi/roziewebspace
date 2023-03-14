@@ -1,0 +1,33 @@
+div.photoblock {
+  margin: 10px;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+
+div.img-holder {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 400px;
+  margin: 10px;
+  object-fit: cover;
+}
+
+div.photoblock img {
+  border: solid var(--hl-fg) 1px;
+  margin: 10px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.22s linear;
+}
+
+.img-holder:hover img {
+  margin-top: 0;
+  margin-bottom: 20px;
+  filter: brightness(110%);
+  box-shadow: 3px 10px var(--1-fg);
+}

@@ -31,21 +31,24 @@ body {
 
 /* Just some general style for page content */
 h1, h2 {
+  text-transform: uppercase;
+  color: var(--hl-fg);
   font-family: vonique64;
   text-align: center;
   margin-bottom: 1px;
   margin-top: 5px;
   transition: all 0.1s linear;
-  text-shadow: 2px 0px 0px rgba(255,0,0,0.5),
-               -2px 0px 0px rgba(0,0,255,0.5),
-               0px 2px 0px rgba(255,255,0,0.5);
+  text-shadow: 2px 0px 0px rgba(255,0,0,0.8),
+               -2px 0px 0px rgba(0,0,255,0.8),
+               0px 2px 0px rgba(255,255,0,0.8);
 }
 
 .textblock:hover h1, .textblock:hover h2 {
+  text-transform: capitalize;
   letter-spacing: 1px;
-  text-shadow: 5px 0px 0px rgba(255,0,0,0.5),
-               -5px 0px 0px rgba(0,0,255,0.5),
-               0px 5px 0px rgba(255,255,0,0.5);
+  text-shadow: 5px 0px 0px rgba(255,0,0,0.8),
+               -5px 0px 0px rgba(0,0,255,0.8),
+               0px 5px 0px rgba(255,255,0,0.8);
 }
 
 h1 {
@@ -57,6 +60,7 @@ h2 {
 }
 
 p {
+  color: var(--2-fg);
   font-size: 16px;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -81,19 +85,20 @@ p {
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
-  justify-content: stretch;
+  justify-content: space-between;
 }
 
 .content a {
-  color: var(--link-highlight)
+  color: var(--hl-fg);
+  backdrop-filter: brightness(150%);
+  -webkit-backdrop-filter: brightness(150%);
 }
 
 .textblock {
   margin: 5px;
   padding: 5px;
-  background-color: var(--shade-background-color);
   border: 3px solid;
-  border-image: linear-gradient(45deg, var(--background-color), var(--primary-color));
+  border-image: linear-gradient(45deg, var(--2-bg), var(--hl-fg));
   border-image-slice: 1;
   transition: all 0.1s linear;
   min-height: 200px;
@@ -102,13 +107,14 @@ p {
   align-items: stretch;
   flex-flow: column;
   flex-grow: 1;
+  flex-shrink: 1;
   flex-basis: 400px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 .textblock:hover {
-  background-color: var(--background-color);
+  background-color: var(--2-bg);
   backdrop-filter: none;
 }
 
@@ -121,6 +127,25 @@ p {
   opacity: 0;
   transition: visibility 0.5s, opacity 0.5s linear;
   color: rgba(100, 255, 180, 1);
+}
+
+.textblock p.contains-avatar {
+  margin-top: -4rem;
+}
+
+.textblock img.avatar {
+  display: block;
+  position: relative;
+  width: 4rem;
+  top: 4.5rem;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+
+}
+.textblock p.offset {
+  margin-left: 4.5rem;
 }
 
 /* NOW SINCE FIREFOX DOESN'T HAVE :has SELECTOR ENABLED BY DEFAULT
@@ -178,7 +203,7 @@ s.spoiler {
   display: inline-block;
   margin-bottom: -5px;
   margin-top: -5px;
-  width: 30px;
+  width: 30px !important; /* For some reason suddenly stopped working without !important, idk why i didn't change anything in code */
   overflow: hidden;
   white-space: nowrap;
   color: rgba(17, 17, 17, 0);
@@ -187,7 +212,7 @@ s.spoiler {
 }
 
 .textblock:hover s.spoiler {
-  width: unset;
+  width: unset !important;
   color: rgba(255, 80, 60, 1);
 }
 
@@ -249,38 +274,6 @@ img.logo-i3 {
 }
 
 
-div.photoblock {
-  margin: 10px;
-  display: flex;
-  flex-flow: wrap;
-  align-items: center;
-  justify-content: center;
-  object-fit: cover;
-}
-
-div.img-holder {
-  display: flex;
-  flex-grow: 1;
-  flex-basis: 400px;
-  margin: 10px;
-  object-fit: cover;
-}
-
-div.photoblock img {
-  margin: 10px;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.22s linear;
-}
-
-.img-holder:hover img {
-  margin-top: 0;
-  margin-bottom: 20px;
-  filter: brightness(110%);
-  box-shadow: 3px 10px var(--primary-color-transparent);
-}
 
 .board-template {
   resize: vertical;
@@ -329,11 +322,11 @@ div.post p {
 
 div.post:hover p {
   filter: unset;
-  color: var(--primary-color);
+  color: var(--1-fg);
 }
 
 div.post small.datetime {
-  color: var(--primary-color);
+  color: var(--1-fg);
   font-family: vonique64;
   backdrop-filter: brightness(160%);
   text-align: right;

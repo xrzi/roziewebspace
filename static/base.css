@@ -1,30 +1,8 @@
 /* Moved from style.css for better readability // Those 500 lines of css drive me crazy */
 /* Let's say base.css is mostly sidenav-related stuff + basic page style - color definitions and background setups*/
 
-{
+* {
   box-sizing: border-box;
-}
-
-/* Handy color definitions. You can change them however you like and whole page will obey :) */
-:root {
-  --primary-color: #53cc7d;
-  --background-color: #111;
-  --link-highlight: rgba(100, 255, 180, 1);
-  --shade-background-color: rgba(17, 17, 17, 0.3);
-  --darker-background-color: rgba(17, 17, 17, 0.7);
-  --primary-color-transparent: rgba(83, 204, 125, 0.5); /* used for selection colors */
-  --body-bg-gradient-1: #008843;
-  --body-bg-gradient-2: #19254D;
-}
-
-::-moz-selection { /* Code for Firefox */
-  color: var(--background-color);
-  background: var(--primary-color-transparent);
-}
-
-::selection {
-  color: var(--background-color);
-  background: var(--primary-color-transparent);
 }
 
 .background-filter-pane {
@@ -35,7 +13,8 @@
   top:0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.7)
+  background-color: var(--hl-bg);
+  opacity: 0.7;
 }
 
 .whole-page {
@@ -43,7 +22,7 @@
   width: 100vw;
   height: 100%;
   font-family: apl2741;
-  color: var(--primary-color);
+  color: var(--1-fg);
   display: flex;
   flex-flow: row nowrap;
   overflow-y: scroll;
@@ -55,12 +34,10 @@
   position: fixed;
   z-index: 50;
   flex-grow: 1;
-  border: 2px solid var(--primary-color);
-  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid var(--hl-fg);
+  font-family: apl2741, Arial, Helvetica, sans-serif;
   height: 99.7vh;
   width: fit-content;
-  color: inherit;
-  background-color: var(--background-color);
   white-space: normal;
   transition: width 0.6s;
   display: flex;
@@ -77,6 +54,7 @@ button span.right-sided {
 }
 
 .sidenav .right-sided {
+  letter-spacing: -2px;
   padding-left: 1em;
   text-decoration: none;
   grid-column: 2;
@@ -133,8 +111,8 @@ button span.right-sided {
 
 /* Invert colors on hover for every direct child of .sidenav */
 .sidenav > *:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
+  background-color: var(--hl-fg);
+  color: var(--hl-bg);
 }
 
 
@@ -157,8 +135,8 @@ button span.right-sided {
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
-  color: var(--background-color);
-  background-color: var(--primary-color);
+  color: var(--2-bg);
+  background-color: var(--2-fg);
 }
 
 /* Style icons in sidenav */
