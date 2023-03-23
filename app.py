@@ -28,8 +28,8 @@ def mc():
     gallery = generate_gallery(path = path)
     return render_template('mc.html', images=gallery)
 
-def get_posts(dbname):
-    queryformat = "SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 100;"
+def get_posts(offset: int):
+    queryformat = f"SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 25 OFFSET {offset*25};"
     conn = sqlite3.connect(dbname)
     cursor = conn.cursor()
     cursor.execute(queryformat)
@@ -37,10 +37,10 @@ def get_posts(dbname):
     conn.close()
     return result
 
-@app.route('/msgboard')
-def msgboard():
-    global dbname
-    posts = get_posts(dbname)
+@app.route('/msgboard', strict_slashes = False)
+@app.route('/msgboard/<int:offset>', strict_slashes = False)
+def msgboard(offset = 0):
+    posts = get_posts(offset = offset)
     return render_template('msgboard.html', posts=posts)
 
 @app.route('/submit_post', methods = ["POST"])

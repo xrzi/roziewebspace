@@ -2,11 +2,12 @@
 
 {% block head %}
 <title>message board</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='msgboard.css') }}">
 {% endblock %}
 
 
 {% block body %}
-
+<script src="{{ url_for('static', filename='msgboard.js') }}"></script>
 <div class="content">
   <div class="textblock width-extended">
     <h1>message board</h1>
@@ -15,6 +16,8 @@
     One rule: Please, be nice!
     <br />
     For safety reasons content of a post is blurred until you point your mouse at it.
+    <br />
+    Posts with empty title or content will be purged!
     </p>
   </div>
   <div class="textblock boardblock">
