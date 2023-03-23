@@ -4,6 +4,7 @@ import json
 import sqlite3
 
 app = Flask(__name__)
+dbname = "msgboard.db"
 
 def generate_gallery(path):
     gallery = []
@@ -27,7 +28,7 @@ def mc():
     gallery = generate_gallery(path = path)
     return render_template('mc.html', images=gallery)
 
-def get_posts():
+def get_posts(dbname):
     queryformat = "SELECT date, title, content FROM posts ORDER BY date DESC LIMIT 100;"
     conn = sqlite3.connect(dbname)
     cursor = conn.cursor()
@@ -38,21 +39,23 @@ def get_posts():
 
 @app.route('/msgboard')
 def msgboard():
-    posts = get_posts()
+    global dbname
+    posts = get_posts(dbname)
     return render_template('msgboard.html', posts=posts)
 
 @app.route('/submit_post', methods = ["POST"])
 def submit_post():
+    global dbname
     if len(request.json['title'])>64 or len(request.json['content'])>5000:
         return("Too damn big, make your post smaller!")
-    result = addpost(title = request.json['title'], content = request.json['content'])
+    result = addpost(title = request.json['title'], content = request.json['content'], dbname = dbname)
     return result
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
-def addpost(title: str, content: str):
+def addpost(title: str, content: str, dbname: str):
     queryformat = "INSERT INTO posts (date, title, content) VALUES (datetime('now'), ?, ?)"
     conn = sqlite3.connect(dbname)
     conn.execute(queryformat, (title, content))
