@@ -183,7 +183,7 @@ p {
   max-height: 100%;
 }
 
-.textblock .githubstats-wrapper {
+.textblock .waka-wrapper {
   display: block;
   max-height: 100%;
   max-width: 50%;
